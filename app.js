@@ -1,3 +1,5 @@
+// world
+
 const world = document.querySelector('.world');
 const size = 40;
 const matrix = [];
@@ -57,7 +59,7 @@ for (let i = 9; i < 15; i++) {
   }
 }
 
-// // create rocks
+// create rocks
 for (let i = size / 2 - 5; i < size / 2; i++) {
   for (let j = 0; j < 5; j++) {
     if (i - (size / 2 - 5) >= j) {
@@ -65,3 +67,57 @@ for (let i = size / 2 - 5; i < size / 2; i++) {
     }
   }
 }
+
+// sidebar
+
+// tools
+const tools = document.querySelector('.tools');
+
+const toolsTitle = document.createElement('h1');
+toolsTitle.textContent = 'Tools';
+tools.append(toolsTitle);
+
+const axe = document.createElement('div');
+const axeImg = document.createElement('img');
+axeImg.src = './img/axe.png';
+axe.append(axeImg);
+axe.classList.add('tool');
+axe.classList.add('axe');
+tools.append(axe);
+
+const pickaxe = document.createElement('div');
+const pickaxeImg = document.createElement('img');
+pickaxeImg.src = './img/pickaxe.png';
+pickaxe.append(pickaxeImg);
+pickaxe.classList.add('tool');
+pickaxe.classList.add('pickaxe');
+tools.append(pickaxe);
+
+const shovel = document.createElement('div');
+const shovelImg = document.createElement('img');
+shovelImg.src = './img/shovel.png';
+shovel.append(shovelImg);
+shovel.classList.add('tool');
+shovel.classList.add('shovel');
+tools.append(shovel);
+
+function select() {
+  if (document.querySelector('.selected')) {
+    const selected = document.querySelector('.selected');
+    selected.classList.remove('selected');
+  }
+  this.classList.add('selected');
+}
+const toolsList = document.querySelectorAll('.tool');
+toolsList.forEach((tool) => tool.addEventListener('click', select));
+
+// inventory
+const inventory = document.querySelector('.inventory');
+const inventoryTitle = document.createElement('h1');
+inventoryTitle.textContent = 'Inventory';
+inventory.append(inventoryTitle);
+const inventoryBox = document.createElement('div');
+inventory.append(inventoryBox);
+inventoryBox.classList.add('inventoryBox');
+
+inventoryBox.addEventListener('click', select);
