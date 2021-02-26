@@ -1,0 +1,64 @@
+:root {
+    --size: 40;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.game {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr 2fr;
+  }
+
+.world {
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: repeat(var(--size), auto);
+    grid-template-rows: repeat(var(--size), auto);
+    grid-column: 2;
+  }
+
+.tile {
+    height: 100%;
+    width: 100%;
+    background: center / cover no-repeat;
+}
+
+[data-type='sky'] {
+    background-color: lightblue;
+  }
+
+  [data-type='cloud'] {
+    background-color: white;
+  }
+
+  [data-type='grass'] {
+    background-image: url('./img/grass.png');
+  }
+
+  [data-type='ground'] {
+    background-image: url('./img/ground.jpg');
+  }
+
+  [data-type='trunk'] {
+    background-image: url('./img/trunk.jpg');
+  }
+  
+  [data-type='leaves'] {
+    background-image: url('./img/tree-leaves.png');
+  }
+  
+  [data-type='rock'] {
+    background-image: url('./img/rock.png');
+  }
+  
+
+  
