@@ -1,3 +1,15 @@
+// landing page
+
+const LP = document.querySelector('.LP');
+const game = document.querySelector('.game');
+
+// start button
+const startBtn = document.querySelector('.startBtn');
+startBtn.addEventListener('click', () => {
+  LP.style.display = 'none';
+  game.style.display = 'grid';
+});
+
 // world
 
 const world = document.querySelector('.world');
