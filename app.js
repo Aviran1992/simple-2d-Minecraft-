@@ -101,12 +101,12 @@ shovel.classList.add('tool');
 shovel.classList.add('shovel');
 tools.append(shovel);
 
-function select() {
+function select(e) {
   if (document.querySelector('.selected')) {
     const selected = document.querySelector('.selected');
     selected.classList.remove('selected');
   }
-  this.classList.add('selected');
+  e.currentTarget.classList.add('selected');
 }
 const toolsList = document.querySelectorAll('.tool');
 toolsList.forEach((tool) => tool.addEventListener('click', select));
@@ -121,3 +121,53 @@ inventory.append(inventoryBox);
 inventoryBox.classList.add('inventoryBox');
 
 inventoryBox.addEventListener('click', select);
+
+// remove tile / add tile to inventory /  add tile from inventory
+function tilesControl() {
+  const tiles = document.querySelectorAll('.tile');
+  tiles.forEach((tile) => {
+    tile.addEventListener('click', (e) => {
+      const selected = document.querySelector('.selected');
+      const type = e.target.getAttribute('data-type');
+      if (selected) {
+        if (
+          (type === 'trunk' || type === 'leaves') &&
+          selected.classList.contains('axe')
+        ) {
+          e.target.removeAttribute('data-type');
+          inventoryBox.setAttribute('data-type', type);
+        }
+        if (
+          (type === 'grass' || type === 'ground') &&
+          selected.classList.contains('shovel')
+        ) {
+          e.target.removeAttribute('data-type');
+          inventoryBox.setAttribute('data-type', type);
+        }
+        if (selected.classList.contains('pickaxe') && type === 'rock') {
+          e.target.removeAttribute('data-type');
+          inventoryBox.setAttribute('data-type', type);
+        }
+        if (
+          selected.classList.contains('inventoryBox') &&
+          selected.getAttribute('data-type')
+        ) {
+          const inventoryType = selected.getAttribute('data-type');
+          e.target.setAttribute('data-type', inventoryType);
+          inventoryBox.removeAttribute('data-type');
+        }
+      }
+    });
+  });
+}
+
+tilesControl();
+
+// reset button
+const initialWorld = world.innerHTML;
+const resetBtn = document.querySelector('.resetBtn');
+resetBtn.addEventListener('click', () => {
+  world.innerHTML = initialWorld;
+  inventoryBox.removeAttribute('data-type');
+  tilesControl();
+});

@@ -105,6 +105,7 @@ body {
   .resetBtn:hover, .tool:hover, .inventoryBox:hover, .selected {
     color: white;
     background-color: darkgray;
+    border: white 3px solid;
   }
   
 
